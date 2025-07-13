@@ -1,0 +1,209 @@
+from pathlib import Path
+
+
+
+# Recriar o conteúdo HTML após reset
+
+html_content = """
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Rucoy Auto Treino</title>
+
+  <style>
+
+    body {
+
+      font-family: Arial, sans-serif;
+
+      background: #3a3a3a;
+
+      color: white;
+
+      padding: 20px;
+
+    }
+
+    .box {
+
+      background: #2b2b2b;
+
+      border-radius: 10px;
+
+      padding: 20px;
+
+      max-width: 500px;
+
+      margin: auto;
+
+    }
+
+    h2 {
+
+      color: #ff8800;
+
+    }
+
+    .section {
+
+      margin-bottom: 20px;
+
+    }
+
+    label {
+
+      display: block;
+
+      margin: 5px 0;
+
+    }
+
+    .btn {
+
+      padding: 10px 20px;
+
+      margin: 10px;
+
+      background: #a58eff;
+
+      border: none;
+
+      border-radius: 6px;
+
+      color: black;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+    }
+
+    input[type="checkbox"], input[type="radio"] {
+
+      margin-right: 10px;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="box">
+
+    <h2>Farm Setting</h2>
+
+
+
+    <div class="section">
+
+      <strong>Choose mode:</strong><br>
+
+      <label><input type="radio" name="mode" value="farm" checked> Farm</label>
+
+      <label><input type="radio" name="mode" value="train"> Train [Pro]</label>
+
+    </div>
+
+
+
+    <div class="section">
+
+      <strong>Choose class:</strong><br>
+
+      <label><input type="radio" name="class" value="melee"> Melee</label>
+
+      <label><input type="radio" name="class" value="distance"> Distance</label>
+
+      <label><input type="radio" name="class" value="magic" checked> Magic</label>
+
+    </div>
+
+
+
+    <div class="section">
+
+      <strong>Select mobs:</strong><br>
+
+      <label><input type="checkbox" value="Crow" checked> Crow</label>
+
+      <label><input type="checkbox" value="Wolf"> Wolf</label>
+
+      <label><input type="checkbox" value="Scorpion"> Scorpion</label>
+
+      <label><input type="checkbox" value="Cobra"> Cobra</label>
+
+      <label><input type="checkbox" value="Worm"> Worm</label>
+
+      <label><input type="checkbox" value="Mummy"> Mummy</label>
+
+      <label><input type="checkbox" value="Pharaoh"> Pharaoh</label>
+
+      <label><input type="checkbox" value="Zombie"> Zombie</label>
+
+      <label><input type="checkbox" value="Skeleton"> Skeleton</label>
+
+    </div>
+
+
+
+    <button class="btn" onclick="generateScript()">PROCEED</button>
+
+    <button class="btn" onclick="alert('Fechado')">CLOSE</button>
+
+
+
+    <pre id="output"></pre>
+
+  </div>
+
+
+
+  <script>
+
+    function generateScript() {
+
+      const mode = document.querySelector('input[name="mode"]:checked').value;
+
+      const classe = document.querySelector('input[name="class"]:checked').value;
+
+      const mobs = [...document.querySelectorAll('input[type="checkbox"]:checked')].map(el => el.value);
+
+
+
+      const script = `// Auto Treino Script - ${classe.toUpperCase()} (${mode.toUpperCase()})\\n// Mobs selecionados: ${mobs.join(", ")}\\n\\nLoop\\n  Tap 780 610 // Ataque mágico\\n  Sleep 150\\n  Tap 930 660 // Mana\\n  Sleep 5000\\n  Swipe 400 400 420 400 200\\n  Sleep 1000\\nEnd`;
+
+
+
+      document.getElementById('output').textContent = script;
+
+    }
+
+  </script>
+
+</body>
+
+</html>
+
+"""
+
+
+
+# Salvar como HTML
+
+export_path = Path("/mnt/data/painel_auto_treino_rucoy.html")
+
+export_path.write_text(html_content)
+
+
+
+export_path.name
